@@ -55,24 +55,30 @@ Thyroid Illness Informational index from UCI AI Archive For Informational index:
 =================================================
 *High Level Design*
 =================================================
-URL : https://drive.google.com/file/d/1o8bbsWEiSbgucWscwJwvUGB3AYy7hKbM/view?usp=sharing
+URL : https://drive.google.com/file/d/1q7JsoRhTO67jSd6bvkqevSm4GJZH8kGp/view?usp=sharing
+
 
 *Low Level Design*
 =================================================
-URL : https://drive.google.com/file/d/11tDEnZCihB1G0MBA4MfjCZew7ixHIcJi/view?usp=sharing
+URL : https://drive.google.com/file/d/1YVIwyFR1lsGJscCTJ-raHzsQN4hv_Her/view?usp=sharing
 
 *Architecture*
 =================================================
-URL : https://drive.google.com/file/d/1Xax-r7k27JSLsqJ4qeEBPcBw4G8AkYA7/view?usp=sharing
+URL : https://drive.google.com/file/d/1Tr7ZaUlBlBvUhkToHpWGsg2Yw_p7qmSY/view?usp=sharing
+
 
 *Detailed Project Report*
 ==================================================
-URL : https://drive.google.com/file/d/1AxRe4k8EyS6HdINRXdz_nwS6pv6FEJnh/view?usp=sharing
+URL : https://drive.google.com/file/d/1oi5RInpCXW9WY5lMAwD8GDHD7TUR349m/view?usp=sharing
 
 *Wireframe*
 ===================================================
-URL : https://drive.google.com/file/d/1a4_mknI3ZXr0OzpTgiMsodrchiUYowch/view?usp=sharing
+URL : https://drive.google.com/file/d/1iE7tAn0FRSCTMQ625z-mGVV7v6sqP8FX/view?usp=sharing
 
+
+*demo videp*
+===================================================
+URL :  https://drive.google.com/file/d/1vVKrMU8cFDWOzCXShJVIk2v6ahmJyjFv/view?usp=sharing
 
 ## Deployment
 
@@ -109,7 +115,7 @@ Send out Forecast to CSV : At long last when we get all the expectation for clie
 =================================================
 Thyroid disease detection Web App 
 
-URL : https://thyroidprediction-api.herokuapp.com/
+URL : http://ec2-3-92-204-225.compute-1.amazonaws.com:8080/
 
 
 
