@@ -1,0 +1,231 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Thyroid Disease Prediction</title>
+        <link rel="stylesheet" href="../static/styles/style.css">
+    </head>
+
+    	<style>
+		body{font-family:Lato,'Helvetica Neue',Helvetica,Arial,sans-serif;}
+		h1,h2,h3,h4,h5,h6{font-family:Lato,'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:700;align:center;}
+		.title{color:#273582;}
+		#fetch{cursor:pointer;}
+		#stopfetch{cursor:pointer;}
+		#fetch:hover,#fetch:active,#fetch:focus,#stopfetch:hover,#stopfetch:active,#stopfetch:focus{background-color:#ff7f00;border-color:#ff7f00;}
+		footer.footer{padding-top:1rem;padding-bottom:1rem;background-color: #e3e8ed!important;}
+		footer a{color:#000;font-weight:600;text-decoration:none;}
+		footer li a:hover{color:orange;}
+		footer li i{color:#363e75;}
+		footer li i:hover{color:orange;}
+		.navbar-light .navbar-brand{color: rgba(0,0,0,.9);}
+		.navbar-light .navbar-brand {margin-left: auto;margin-right: auto;}
+		.container-fluid{
+			width:90%;
+			text-align: center;
+		}
+		.load{
+			height:100%;
+			background-color:#ffffffbe;
+			position:absolute;
+			width:100%;
+			z-index:1000;
+			display:none;
+		}
+		.loader {
+		  border: 10px solid #f3f3f3;
+		  border-radius: 50%;
+		  border-top: 10px solid #3498db;
+		  width: 30px;
+		  height: 30px;
+		  margin-left:auto;
+		  margin-right:auto;
+		  margin-top:30%;
+		  -webkit-animation: spin 2s linear infinite; /* Safari */
+		  animation: spin 2s linear infinite;
+		}
+
+		/* Safari */
+		@-webkit-keyframes spin {
+		  0% { -webkit-transform: rotate(0deg); }
+		  100% { -webkit-transform: rotate(360deg); }
+		}
+
+		@keyframes spin {
+		  0% { transform: rotate(0deg); }
+		  100% { transform: rotate(360deg); }
+		}
+
+		@media (min-width:768px){
+			header.masthead{
+				padding-top:4rem;
+				padding-bottom:4rem;
+			}
+			header.masthead h1{
+				font-size:3rem;
+			}
+		}
+		.res-container{}
+		.result-box{width:80%;margin-left:auto;margin-right:auto;height: 260px;padding:10px;overflow-y: auto;}
+		#loading {
+			position: fixed;
+			left: 0px;
+			top: 0px;
+			width: 100%;
+			height: 100%;
+			z-index: 9999999999;
+			overflow: hidden;
+			background: rgba(255, 255, 255, 0.7);
+		}
+		.loader {
+			border: 8px solid #f3f3f3;
+			border-top: 8px solid #363e75;
+			border-radius: 50%;
+			width: 60px;
+			height: 60px;
+			left: 50%;
+			margin-left: -4em;
+			display: block;
+			animation: spin 2s linear infinite;
+		}
+		.loader,
+		.loader:after {
+			display: block;
+			position: absolute;
+			top: 50%;
+			margin-top: -4.05em;
+		}
+		@keyframes spin {
+			0% {
+				transform: rotate(0deg);
+			}
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+		.footer{position:absolute;bottom:0px;width:100%;}
+		#datafetch_form{padding:0px 40px;}
+		.json-result{}
+		.result-box p{text-align:left;}
+	</style>
+</head>
+
+    <body>
+        <center>
+
+        <h1 style="font-size:40px; color:rgb(255, 255, 255);">Thyroid Disease Prediction</h1>
+        <h4 style="font-size:20px;margin-left: 20px;">This Is Your Life, and It's Ending One Minute at a Time. Act First . Keep Checked Up.</h4>
+            <h4 style="font-size:20px;margin-left: 20px;">Help Us To Get Your Results Quickly. </h4>
+
+        <p style="font-size:20px;">Put Down Your Values in blanks</p>
+
+
+        <form method='POST', action="{{url_for('prediction')}}">
+
+            <label style="font-size:large;background-color:rgb(255, 255, 255); padding:3px 13px; margin: 10px 4px 17px 4px;">sex:</label>
+            <select class="text" name="sex" style="padding: 4px 1px; font-size:15; margin-left:114px;">
+                <option value="text">select</option>
+                <option value="1">Male</option>
+                <option value="0">Female</option>
+                <option value="0">Others</option>
+
+        </select><br><br>
+            <label style="font-size:large;background-color:rgb(255, 255, 255); padding:3px 8px; margin: 10px 3px 17px 3px;">Age:</label>
+            <input type="number", style="padding:5px 17px; font-size:13px;" name='Age', placeholder="Value"><br><br>
+
+        </select><br><br>
+
+            <label style="font-size:large;background-color:rgb(255, 255, 255); padding:3px 8px; margin: 10px 3px 17px 3px;">TSH:</label>
+            <input type="number", style="padding:5px 17px; font-size:13px;" name='TSH', placeholder="Value"><br><br>
+
+            <label style="font-size:large;background-color:rgb(255, 255, 255); padding:3px 10px; margin: 10px 4px 17px 4px;">FTI:</label>
+            <input type="number", style="padding:5px 17px; font-size:13px;" name='FTI', placeholder="Value"><br><br>
+
+            <label style="font-size:large;background-color:rgb(255, 255, 255); padding:3px 8px; margin: 10px 4px 17px 4px;">T4:</label>
+            <input type="number", style="padding:5px 17px; font-size:13px;" name='TT4', placeholder="Value"><br><br>
+
+            <label style="font-size:large;background-color:rgb(255, 255, 255); padding:3px 8px; margin: 10px 12px 17px 4px;">T3:</label>
+            <input type="number", style="padding:5px 17px; font-size:13px;" name='T3', placeholder="Value"><br><br>
+
+            <label style="font-size:large;background-color:rgb(255, 255, 255); padding:3px 12px; margin: 10px 10px 17px 4px;">query_hypothyroid:</label>
+            <select class="text" name="query_hypothyroid" style="padding: 4px 6px; font-size:15 ;">
+                <option value="text">select</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select><br><br>
+
+            <label style="font-size:large;background-color:rgb(255, 255, 255); padding:3px 13px; margin: 10px 4px 17px 4px;">on_thyroxine:</label>
+            <select class="text" name="on_thyroxine" style="padding: 4px 6px; font-size:15; margin-left:43px;">
+                <option value="text">select</option>
+                <option value="1">True</option>
+                <option value="0">False</option>
+        </select><br><br>
+
+
+
+            <label style="font-size:large;background-color:rgb(255, 255, 255); padding:3px 13px; margin: 10px 4px 17px 4px;">Pregnant:</label>
+            <select class="text" name="pregnant" style="padding: 4px 6px; font-size:15; margin-left:73px;">
+                <option value="text">select</option>
+                <option value="1">Going to Give Birth</option>
+                <option value="0">Not Applicable</option>
+        </select><br><br>
+
+            <label style="font-size:large;background-color:rgb(255, 255, 255); padding:3px 13px; margin: 10px 4px 17px 4px;">Psych:</label>
+            <select class="text" name="psych" style="padding: 4px 7px; font-size:15; margin-left:93px;">
+                <option value="text">select</option>
+                <option value="1">Yes</option>
+                <option value="0">Stopped</option>
+        </select><br><br>
+
+            <input type="submit" , style="background-color:rgb(0, 128, 0);padding:5px 12px; font-size: 15px;" value='Predict'> <br><br>
+            <input type="reset", style="background-color:rgb(0, 128, 0);padding:5px 12px; font-size: 15px;" value='Reset value'> <br><br>
+
+        </form>
+
+        </center>
+
+    <script>
+
+		$(document).ready(function(){
+			$('#loading').hide();
+			$("#customfile").click(function(e){
+				e.preventDefault();
+				$('#loading').show();
+				var path = $("#csvfile").val();
+				$.ajax({
+					//change url below
+					url : "/predict",
+					type: "POST",
+					data: {filepath:path},
+					success: function(response){
+						$(".json-result").html('<p>"Prediction File created at !!!Prediction_Output_File/Predictions.csvand few of the predictions are"</p><pre>' + response + '</pre>');
+						$('#loading').hide();
+					}
+				});
+			});
+			$("#defaultfile").click(function(e){
+				e.preventDefault();
+				$('#loading').show();
+				var path = $(this).attr("data-path");
+				$.ajax({
+					//change url below
+					url : "/predict",
+					type: "POST",
+					data: {filepath:path},
+					success: function(response){
+						$(".json-result").html('<p>"Prediction File created !!!</p><pre>' + response + '</pre>');
+						$('#loading').hide();
+					}
+				});
+
+			});
+		});
+	</script>
+    </body>
+</html>
+
+        
+
+            
+
+
+

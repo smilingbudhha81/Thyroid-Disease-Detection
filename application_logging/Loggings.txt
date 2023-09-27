@@ -1,0 +1,8 @@
+2022-01-17/13:12:08		Entered the get_data
+2022-01-17/13:12:08		get_data done Successful and Exited
+2022-01-17/16:24:52		Entered the preprocessing
+2022-01-17/16:24:53		preprocessing was done Successful and Exited
+2022-01-17/16:25:33		Entered the balance
+2022-01-17/16:25:33		balance done Successful and Exited
+2022-01-17/16:27:25		Entered the train_test
+2022-01-17/16:27:27		train_test done Successful and Exited
